@@ -89,7 +89,6 @@ export default function AIToolsHub() {
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-lg bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 transition-colors"
-                aria-label="Toggle dark mode"
               >
                 {darkMode ? (
                   <Sun size={20} className="text-amber-400" />
@@ -103,7 +102,7 @@ export default function AIToolsHub() {
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
               <input
                 type="text"
-                placeholder="Search tools... (e.g., ChatGPT, Figma AI)"
+                placeholder="Search tools..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-lg bg-slate-800 dark:bg-slate-700 border border-slate-700 dark:border-slate-600 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 text-slate-100 placeholder-slate-500 transition-all"
@@ -177,7 +176,7 @@ export default function AIToolsHub() {
                       <span className="text-3xl">{categoryData.icon}</span>
                       <div>
                         <h2 className="text-2xl font-bold text-slate-100">{categoryName}</h2>
-                        <p className="text-sm text-slate-400 dark:text-slate-500">{tools.length} tool{tools.length !== 1 ? 's' : ''}</p>
+                        <p className="text-sm text-slate-400 dark:text-slate-500">{tools.length} tools</p>
                       </div>
                     </div>
 
@@ -190,24 +189,19 @@ export default function AIToolsHub() {
                             href={tool.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative p-4 rounded-xl bg-gradient-to-br from-slate-800 to-slate-700/50 dark:from-slate-800 dark:to-slate-900 border border-slate-700 dark:border-slate-700/50 hover:border-cyan-500/50 dark:hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 dark:hover:shadow-cyan-500/10 overflow-hidden"
+                            className="group relative p-4 rounded-xl bg-gradient-to-br from-slate-800 to-slate-700/50 dark:from-slate-800 dark:to-slate-900 border border-slate-700 dark:border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 overflow-hidden"
                           >
                             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300" />
-
                             <div className="relative z-10">
-                              <div className="flex items-start justify-between mb-3">
-                                <h3 className="font-semibold text-slate-100 group-hover:text-cyan-300 transition-colors line-clamp-2">
-                                  {tool.name}
-                                </h3>
-                              </div>
-
+                              <h3 className="font-semibold text-slate-100 group-hover:text-cyan-300 transition-colors line-clamp-2 mb-3">
+                                {tool.name}
+                              </h3>
                               <div className="mb-4">
                                 <span className={`inline-block px-2 py-1 rounded-md text-xs font-medium ${pricingStyle.bg} ${pricingStyle.text}`}>
                                   {tool.pricing}
                                 </span>
                               </div>
-
-                              <button className="w-full py-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/40 hover:to-blue-500/40 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-300 hover:text-cyan-200 text-sm font-medium transition-all group-hover:shadow-lg group-hover:shadow-cyan-500/20">
+                              <button className="w-full py-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/40 hover:to-blue-500/40 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-300 hover:text-cyan-200 text-sm font-medium transition-all">
                                 Visit Tool →
                               </button>
                             </div>
@@ -226,11 +220,7 @@ export default function AIToolsHub() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400 dark:text-slate-500">
               <p>© 2026 AI Tools Hub. Curated collection of productivity tools.</p>
-              <p>
-                Total Tools: <span className="font-semibold text-slate-300 dark:text-slate-400">
-                  {getTotalToolCount()}
-                </span>
-              </p>
+              <p>Total Tools: <span className="font-semibold text-slate-300 dark:text-slate-400">{getTotalToolCount()}</span></p>
             </div>
           </div>
         </footer>
