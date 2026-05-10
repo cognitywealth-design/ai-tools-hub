@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  color-scheme: dark;
-}
-
 body {
-  background: #0a0a0a;
+  background: #FFF8F2;
 }
