@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 html {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 body {
-  background: rgb(15, 23, 42);
+  background: #0a0a0a;
 }
