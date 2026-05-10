@@ -4,7 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  swcMinify: true,
   compress: true,
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
