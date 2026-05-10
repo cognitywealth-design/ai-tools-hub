@@ -39,108 +39,109 @@ export default function AIToolsHub() {
     return grouped;
   }, [filteredTools]);
 
-  if (!isMounted) return <div className="min-h-screen bg-white" />;
+  if (!isMounted) return <div style={{minHeight:'100vh',background:'#FEF6EC'}} />;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div style={{minHeight:'100vh', background:'#FEF6EC'}}>
 
-      {/* TOP HEADER - Dark like CognityWealth */}
-      <header className="bg-black border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-black font-bold text-sm">C</div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-white font-bold text-base">CognityWealth</span>
-                  <span className="text-orange-400 text-xs font-medium bg-orange-400/10 px-2 py-0.5 rounded-full border border-orange-400/20">AI · Tools Hub</span>
-                </div>
-                <p className="text-gray-500 text-xs">Discover {getTotalToolCount()}+ AI Productivity Tools</p>
+      {/* HEADER */}
+      <header style={{background:'#0a0a0a', borderBottom:'1px solid #1f1f1f'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+          <div style={{display:'flex', alignItems:'center', gap:'12px'}}>
+            <div style={{width:'38px', height:'38px', borderRadius:'10px', background:'linear-gradient(135deg, #f97316, #f59e0b)', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:'800', fontSize:'16px', color:'#000'}}>C</div>
+            <div>
+              <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
+                <span style={{color:'#fff', fontWeight:'700', fontSize:'15px'}}>CognityWealth</span>
+                <span style={{color:'#f97316', fontSize:'11px', fontWeight:'600', background:'rgba(249,115,22,0.1)', padding:'2px 8px', borderRadius:'20px', border:'1px solid rgba(249,115,22,0.3)'}}>AI · Tools Hub</span>
               </div>
+              <p style={{color:'#6b7280', fontSize:'11px', margin:'2px 0 0 0'}}>Discover {getTotalToolCount()}+ AI Productivity Tools</p>
             </div>
-            <a href="https://ai.cognitywealth.in" target="_blank" rel="noopener noreferrer" className="text-xs text-orange-400 hover:text-orange-300 border border-orange-400/30 hover:border-orange-400/60 px-3 py-1.5 rounded-lg transition-all">
-              Go to AI Chat →
-            </a>
           </div>
+          <a href="https://ai.cognitywealth.in" target="_blank" rel="noopener noreferrer"
+            style={{color:'#f97316', fontSize:'12px', border:'1px solid rgba(249,115,22,0.4)', padding:'6px 14px', borderRadius:'8px', textDecoration:'none', fontWeight:'500'}}>
+            Go to AI Chat →
+          </a>
         </div>
       </header>
 
-      {/* SEARCH + FILTERS - Light background */}
-      <div className="bg-gray-50 border-b border-gray-200 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="relative mb-4">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+      {/* FILTERS */}
+      <div style={{background:'#fff8f0', borderBottom:'1px solid #fde8cc', position:'sticky', top:'0', zIndex:'40'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'16px 24px'}}>
+          <div style={{position:'relative', marginBottom:'14px'}}>
+            <Search size={15} style={{position:'absolute', left:'12px', top:'50%', transform:'translateY(-50%)', color:'#9ca3af'}} />
             <input
               type="text"
               placeholder="Search AI tools... (e.g. ChatGPT, Midjourney)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white border border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-gray-800 placeholder-gray-400 text-sm transition-all"
+              style={{width:'100%', paddingLeft:'36px', paddingRight:'16px', paddingTop:'10px', paddingBottom:'10px', borderRadius:'10px', background:'#fff', border:'1.5px solid #fcd9a8', outline:'none', fontSize:'13px', color:'#1f2937', boxSizing:'border-box'}}
             />
           </div>
-          <div className="space-y-3">
-            <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Category</p>
-              <div className="flex flex-wrap gap-1.5">
-                {['All', ...categories].map(cat => (
-                  <button key={cat} onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${selectedCategory === cat ? 'bg-orange-500 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'}`}>
-                    {cat}
-                  </button>
-                ))}
-              </div>
+
+          <div style={{marginBottom:'10px'}}>
+            <p style={{fontSize:'10px', fontWeight:'700', color:'#9ca3af', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'8px'}}>Category</p>
+            <div style={{display:'flex', flexWrap:'wrap', gap:'6px'}}>
+              {['All', ...categories].map(cat => (
+                <button key={cat} onClick={() => setSelectedCategory(cat)}
+                  style={{padding:'4px 12px', borderRadius:'20px', fontSize:'12px', fontWeight:'500', cursor:'pointer', border:'none', background: selectedCategory === cat ? '#f97316' : '#fff', color: selectedCategory === cat ? '#fff' : '#6b7280', boxShadow: selectedCategory === cat ? '0 2px 8px rgba(249,115,22,0.3)' : '0 1px 3px rgba(0,0,0,0.08)'}}>
+                  {cat}
+                </button>
+              ))}
             </div>
-            <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Pricing</p>
-              <div className="flex flex-wrap gap-1.5">
-                {['All', 'Free', 'Free/Paid', 'Paid', 'Free/Open Source'].map(pricing => (
-                  <button key={pricing} onClick={() => setSelectedPricing(pricing)}
-                    className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${selectedPricing === pricing ? 'bg-amber-500 text-white shadow-sm' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'}`}>
-                    {pricing}
-                  </button>
-                ))}
-              </div>
+          </div>
+
+          <div>
+            <p style={{fontSize:'10px', fontWeight:'700', color:'#9ca3af', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'8px'}}>Pricing</p>
+            <div style={{display:'flex', flexWrap:'wrap', gap:'6px'}}>
+              {['All', 'Free', 'Free/Paid', 'Paid', 'Free/Open Source'].map(pricing => (
+                <button key={pricing} onClick={() => setSelectedPricing(pricing)}
+                  style={{padding:'4px 12px', borderRadius:'20px', fontSize:'12px', fontWeight:'500', cursor:'pointer', border:'none', background: selectedPricing === pricing ? '#f59e0b' : '#fff', color: selectedPricing === pricing ? '#fff' : '#6b7280', boxShadow: selectedPricing === pricing ? '0 2px 8px rgba(245,158,11,0.3)' : '0 1px 3px rgba(0,0,0,0.08)'}}>
+                  {pricing}
+                </button>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* MAIN CONTENT */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* MAIN */}
+      <main style={{maxWidth:'1280px', margin:'0 auto', padding:'32px 24px'}}>
         {Object.keys(groupedResults).length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="text-5xl mb-4">🔍</div>
-            <h2 className="text-xl font-bold text-gray-800 mb-2">No tools found</h2>
-            <p className="text-gray-500 text-sm">Try adjusting your search or filters.</p>
+          <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'80px 0'}}>
+            <div style={{fontSize:'48px', marginBottom:'16px'}}>🔍</div>
+            <h2 style={{fontSize:'20px', fontWeight:'700', color:'#1f2937', marginBottom:'8px'}}>No tools found</h2>
+            <p style={{color:'#9ca3af', fontSize:'14px'}}>Try adjusting your search or filters.</p>
           </div>
         ) : (
-          <div className="space-y-10">
+          <div style={{display:'flex', flexDirection:'column', gap:'40px'}}>
             {Object.keys(groupedResults).map(categoryName => {
               const categoryData = TOOLS_DATA[categoryName];
               const tools = groupedResults[categoryName];
               return (
                 <section key={categoryName}>
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="text-2xl">{categoryData.icon}</span>
+                  <div style={{display:'flex', alignItems:'center', gap:'12px', marginBottom:'16px'}}>
+                    <span style={{fontSize:'24px'}}>{categoryData.icon}</span>
                     <div>
-                      <h2 className="text-base font-bold text-gray-900">{categoryName}</h2>
-                      <p className="text-xs text-gray-400">{tools.length} tools</p>
+                      <h2 style={{fontSize:'16px', fontWeight:'700', color:'#1f2937', margin:'0'}}>{categoryName}</h2>
+                      <p style={{fontSize:'11px', color:'#9ca3af', margin:'2px 0 0 0'}}>{tools.length} tools</p>
                     </div>
-                    <div className="flex-1 h-px bg-gray-200 ml-2" />
+                    <div style={{flex:'1', height:'1px', background:'#fde8cc', marginLeft:'8px'}} />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                  <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(220px, 1fr))', gap:'12px'}}>
                     {tools.map(tool => {
                       const pricingStyle = PRICING_BADGES[tool.pricing] || PRICING_BADGES['Free/Paid'];
                       return (
                         <a key={tool.name} href={tool.url} target="_blank" rel="noopener noreferrer"
-                          className="group p-4 rounded-xl bg-white border border-gray-200 hover:border-orange-400 hover:shadow-md transition-all duration-200">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-semibold text-gray-800 group-hover:text-orange-500 transition-colors text-sm">{tool.name}</h3>
+                          style={{padding:'16px', borderRadius:'12px', background:'#fff', border:'1.5px solid #fde8cc', textDecoration:'none', display:'block', transition:'all 0.2s', boxShadow:'0 1px 4px rgba(249,115,22,0.06)'}}
+                          onMouseEnter={e => { e.currentTarget.style.borderColor='#f97316'; e.currentTarget.style.boxShadow='0 4px 16px rgba(249,115,22,0.15)'; }}
+                          onMouseLeave={e => { e.currentTarget.style.borderColor='#fde8cc'; e.currentTarget.style.boxShadow='0 1px 4px rgba(249,115,22,0.06)'; }}>
+                          <h3 style={{fontSize:'13px', fontWeight:'700', color:'#1f2937', margin:'0 0 8px 0'}}>{tool.name}</h3>
+                          <div style={{marginBottom:'12px'}}>
+                            <span style={{fontSize:'11px', fontWeight:'600', padding:'2px 8px', borderRadius:'4px', background: tool.pricing === 'Free' ? '#dcfce7' : tool.pricing === 'Paid' ? '#dbeafe' : '#fef9c3', color: tool.pricing === 'Free' ? '#16a34a' : tool.pricing === 'Paid' ? '#1d4ed8' : '#a16207'}}>
+                              {tool.pricing}
+                            </span>
                           </div>
-                          <div className="mb-3">
-                            <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${pricingStyle.bg} ${pricingStyle.text}`}>{tool.pricing}</span>
-                          </div>
-                          <div className="w-full py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 border border-orange-200 hover:border-orange-400 text-orange-500 text-xs font-medium text-center transition-all">
+                          <div style={{width:'100%', padding:'7px 0', borderRadius:'8px', background:'#fff7ed', border:'1px solid #fed7aa', color:'#ea580c', fontSize:'12px', fontWeight:'600', textAlign:'center'}}>
                             Visit Tool →
                           </div>
                         </a>
@@ -155,12 +156,10 @@ export default function AIToolsHub() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-black border-t border-gray-800 mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-            <p className="text-gray-500">© 2026 <span className="text-orange-400 font-medium">CognityWealth</span> · AI Tools Hub</p>
-            <p className="text-gray-500">Total Tools: <span className="text-orange-400 font-semibold">{getTotalToolCount()}</span></p>
-          </div>
+      <footer style={{background:'#0a0a0a', borderTop:'1px solid #1f1f1f', marginTop:'40px'}}>
+        <div style={{maxWidth:'1280px', margin:'0 auto', padding:'20px 24px', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+          <p style={{color:'#6b7280', fontSize:'12px', margin:'0'}}>© 2026 <span style={{color:'#f97316', fontWeight:'600'}}>CognityWealth</span> · AI Tools Hub</p>
+          <p style={{color:'#6b7280', fontSize:'12px', margin:'0'}}>Total Tools: <span style={{color:'#f97316', fontWeight:'700'}}>{getTotalToolCount()}</span></p>
         </div>
       </footer>
     </div>
