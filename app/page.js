@@ -45,10 +45,15 @@ export default function AIToolsHub() {
     <div style={{minHeight:'100vh', background:'#FEF6EC', fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif'}}>
 
       {/* HEADER */}
-      <header style={{background:'#0D1B2A', borderBottom:'1px solid #1f3a52'}}>
+      <header style={{background:'#0D1B2A', borderBottom:'2px solid #1f3a52'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'16px 28px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
           <div style={{display:'flex', alignItems:'center', gap:'16px'}}>
-            <div style={{width:'52px', height:'52px', borderRadius:'50%', background:'linear-gradient(135deg,#C9A84C,#0D1B2A)', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:'900', fontSize:'22px', color:'#C9A84C', border:'2px solid #C9A84C'}}>C</div>
+            <img
+              src="/logo.jpeg"
+              alt="CognityWealth Logo"
+              style={{width:'52px', height:'52px', borderRadius:'50%', border:'2px solid #C9A84C', objectFit:'cover'}}
+              onError={(e) => { e.target.style.display='none'; }}
+            />
             <div>
               <div style={{display:'flex', alignItems:'center', gap:'10px'}}>
                 <span style={{color:'#fff', fontWeight:'800', fontSize:'20px', letterSpacing:'-0.3px'}}>CognityWealth</span>
@@ -83,7 +88,7 @@ export default function AIToolsHub() {
             <div style={{display:'flex', flexWrap:'wrap', gap:'7px'}}>
               {['All', ...categories].map(cat => (
                 <button key={cat} onClick={() => setSelectedCategory(cat)}
-                  style={{padding:'7px 16px', borderRadius:'22px', fontSize:'13px', fontWeight:'600', cursor:'pointer', border:'none', fontFamily:'inherit', background: selectedCategory === cat ? '#C9A84C' : '#fff', color: selectedCategory === cat ? '#fff' : '#5d4e37', border: selectedCategory === cat ? 'none' : '1.5px solid #D4B86A', boxShadow: selectedCategory === cat ? '0 2px 10px rgba(201,168,76,0.3)' : 'none', transition:'all 0.2s'}}>
+                  style={{padding:'7px 16px', borderRadius:'22px', fontSize:'13px', fontWeight:'600', cursor:'pointer', fontFamily:'inherit', background: selectedCategory === cat ? '#C9A84C' : '#fff', color: selectedCategory === cat ? '#fff' : '#5d4e37', border: selectedCategory === cat ? '2px solid #C9A84C' : '2px solid #D4B86A', boxShadow: selectedCategory === cat ? '0 2px 10px rgba(201,168,76,0.3)' : 'none', transition:'all 0.2s'}}>
                   {cat}
                 </button>
               ))}
@@ -95,7 +100,7 @@ export default function AIToolsHub() {
             <div style={{display:'flex', flexWrap:'wrap', gap:'7px'}}>
               {['All', 'Free', 'Free/Paid', 'Paid', 'Free/Open Source'].map(pricing => (
                 <button key={pricing} onClick={() => setSelectedPricing(pricing)}
-                  style={{padding:'7px 16px', borderRadius:'22px', fontSize:'13px', fontWeight:'600', cursor:'pointer', border:'none', fontFamily:'inherit', background: selectedPricing === pricing ? '#E8A020' : '#fff', color: selectedPricing === pricing ? '#fff' : '#5d4e37', border: selectedPricing === pricing ? 'none' : '1.5px solid #D4B86A', boxShadow: selectedPricing === pricing ? '0 2px 10px rgba(232,160,32,0.3)' : 'none', transition:'all 0.2s'}}>
+                  style={{padding:'7px 16px', borderRadius:'22px', fontSize:'13px', fontWeight:'600', cursor:'pointer', fontFamily:'inherit', background: selectedPricing === pricing ? '#E8A020' : '#fff', color: selectedPricing === pricing ? '#fff' : '#5d4e37', border: selectedPricing === pricing ? '2px solid #E8A020' : '2px solid #D4B86A', boxShadow: selectedPricing === pricing ? '0 2px 10px rgba(232,160,32,0.3)' : 'none', transition:'all 0.2s'}}>
                   {pricing}
                 </button>
               ))}
@@ -128,26 +133,24 @@ export default function AIToolsHub() {
                     <div style={{flex:'1', height:'2px', background:'linear-gradient(to right, #D4B86A, transparent)', marginLeft:'8px'}} />
                   </div>
                   <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(220px, 1fr))', gap:'14px'}}>
-                    {tools.map(tool => {
-                      return (
-                        <a key={tool.name} href={tool.url} target="_blank" rel="noopener noreferrer"
-                          style={{padding:'18px', borderRadius:'13px', background:'#FFF8EC', border:'2px solid #E8D5A3', textDecoration:'none', display:'block', transition:'all 0.2s', boxShadow:'0 2px 6px rgba(201,168,76,0.1)'}}
-                          onMouseEnter={e => { e.currentTarget.style.borderColor='#C9A84C'; e.currentTarget.style.boxShadow='0 6px 20px rgba(201,168,76,0.2)'; e.currentTarget.style.transform='translateY(-2px)'; }}
-                          onMouseLeave={e => { e.currentTarget.style.borderColor='#E8D5A3'; e.currentTarget.style.boxShadow='0 2px 6px rgba(201,168,76,0.1)'; e.currentTarget.style.transform='translateY(0)'; }}>
-                          <h3 style={{fontSize:'16px', fontWeight:'800', color:'#1a2a3a', margin:'0 0 10px 0'}}>{tool.name}</h3>
-                          <div style={{marginBottom:'14px'}}>
-                            <span style={{fontSize:'12px', fontWeight:'700', padding:'3px 10px', borderRadius:'5px',
-                              background: tool.pricing === 'Free' ? '#dcfce7' : tool.pricing === 'Paid' ? '#dbeafe' : '#fef9c3',
-                              color: tool.pricing === 'Free' ? '#166534' : tool.pricing === 'Paid' ? '#1e40af' : '#a16207'}}>
-                              {tool.pricing}
-                            </span>
-                          </div>
-                          <div style={{width:'100%', padding:'9px 0', borderRadius:'8px', background:'#FFF3D0', border:'1.5px solid #C9A84C', color:'#7a4e0a', fontSize:'14px', fontWeight:'700', textAlign:'center'}}>
-                            Visit Tool →
-                          </div>
-                        </a>
-                      );
-                    })}
+                    {tools.map(tool => (
+                      <a key={tool.name} href={tool.url} target="_blank" rel="noopener noreferrer"
+                        style={{padding:'18px', borderRadius:'13px', background:'#FFF8EC', border:'2px solid #E8D5A3', textDecoration:'none', display:'block', transition:'all 0.2s', boxShadow:'0 2px 6px rgba(201,168,76,0.1)'}}
+                        onMouseEnter={e => { e.currentTarget.style.borderColor='#C9A84C'; e.currentTarget.style.boxShadow='0 6px 20px rgba(201,168,76,0.2)'; e.currentTarget.style.transform='translateY(-2px)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor='#E8D5A3'; e.currentTarget.style.boxShadow='0 2px 6px rgba(201,168,76,0.1)'; e.currentTarget.style.transform='translateY(0)'; }}>
+                        <h3 style={{fontSize:'16px', fontWeight:'800', color:'#1a2a3a', margin:'0 0 10px 0'}}>{tool.name}</h3>
+                        <div style={{marginBottom:'14px'}}>
+                          <span style={{fontSize:'12px', fontWeight:'700', padding:'3px 10px', borderRadius:'5px',
+                            background: tool.pricing === 'Free' ? '#dcfce7' : tool.pricing === 'Paid' ? '#dbeafe' : '#fef9c3',
+                            color: tool.pricing === 'Free' ? '#166534' : tool.pricing === 'Paid' ? '#1e40af' : '#a16207'}}>
+                            {tool.pricing}
+                          </span>
+                        </div>
+                        <div style={{width:'100%', padding:'9px 0', borderRadius:'8px', background:'#FFF3D0', border:'1.5px solid #C9A84C', color:'#7a4e0a', fontSize:'14px', fontWeight:'700', textAlign:'center'}}>
+                          Visit Tool →
+                        </div>
+                      </a>
+                    ))}
                   </div>
                 </section>
               );
@@ -159,7 +162,10 @@ export default function AIToolsHub() {
       {/* FOOTER */}
       <footer style={{background:'#0D1B2A', borderTop:'2px solid #1f3a52', marginTop:'40px'}}>
         <div style={{maxWidth:'1280px', margin:'0 auto', padding:'20px 28px', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <p style={{color:'#8fa3b8', fontSize:'14px', margin:'0'}}>© 2026 <span style={{color:'#C9A84C', fontWeight:'700'}}>CognityWealth</span> · AI Tools Hub</p>
+          <div style={{display:'flex', alignItems:'center', gap:'10px'}}>
+            <img src="/logo.jpeg" alt="CognityWealth" style={{width:'28px', height:'28px', borderRadius:'50%', border:'1px solid #C9A84C', objectFit:'cover'}} onError={(e) => { e.target.style.display='none'; }} />
+            <p style={{color:'#8fa3b8', fontSize:'14px', margin:'0'}}>© 2026 <span style={{color:'#C9A84C', fontWeight:'700'}}>CognityWealth</span> · AI Tools Hub</p>
+          </div>
           <p style={{color:'#8fa3b8', fontSize:'14px', margin:'0'}}>Total Tools: <span style={{color:'#C9A84C', fontWeight:'700'}}>{getTotalToolCount()}</span></p>
         </div>
       </footer>
